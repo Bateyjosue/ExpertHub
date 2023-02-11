@@ -1,0 +1,278 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{user_id}/appointments":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list appointments
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create appointment
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: string
+                date:
+                  type: string
+                technician_id:
+                  type: integer
+              required:
+              - location
+              - date
+  "/api/v1/users/{user_id}/appointments/{id}":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show appointment
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update appointment
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: string
+                date:
+                  type: string
+                technician_id:
+                  type: integer
+              required:
+              - location
+              - date
+    put:
+      summary: update appointment
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: string
+                date:
+                  type: string
+                technician_id:
+                  type: integer
+              required:
+              - location
+              - date
+    delete:
+      summary: delete appointment
+      responses:
+        '200':
+          description: successful
+  "/api/v1/technicians/{technician_id}/appointments":
+    parameters:
+    - name: technician_id
+      in: path
+      description: technician_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list appointments
+      responses:
+        '200':
+          description: successful
+  "/api/v1/technicians/{technician_id}/appointments/{id}":
+    parameters:
+    - name: technician_id
+      in: path
+      description: technician_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show appointment
+      responses:
+        '200':
+          description: successful
+  "/api/v1/technicians":
+    get:
+      summary: list technicians
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create technician
+      parameters: []
+      responses:
+        '200':
+          description: technician added successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                charges:
+                  type: integer
+                specialization:
+                  type: string
+                image:
+                  type: string
+              required:
+              - name
+              - location
+              - charges
+              - specialization
+              - image
+  "/api/v1/technicians/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show technician
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update technician
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                charges:
+                  type: integer
+                specialization:
+                  type: string
+                image:
+                  type: string
+              required:
+              - name
+              - location
+              - charges
+              - specialization
+              - image
+    put:
+      summary: update technician
+      parameters: []
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete technician
+      responses:
+        '200':
+          description: successful
+  "/users":
+    post:
+      summary: create registration
+      parameters: []
+      responses:
+        '200':
+          description: Sign up successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+  "/users/sign_in":
+    post:
+      summary: create session
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - password
+  "/users/sign_out":
+    delete:
+      summary: delete session
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
